@@ -125,20 +125,20 @@ void CServerInfo::writePlayersList(CSizeBuf& szbuf) const
 
 	size_t count = 0;
 
-	for (int i = 0; i < m_maxPlayers; i++)
-	{
-		const CReunionPlayer *player = g_Players[i];
+	//for (int i = 0; i < m_maxPlayers; i++)
+	//{
+	//	const CReunionPlayer *player = g_Players[i];
 
-		if (!player->getClient()->IsConnected())
-			continue;
+	//	if (!player->getClient()->IsConnected())
+	//		continue;
 
-		szbuf.WriteByte((uint8)(count + (int)player->getClient()->IsFakeClient() * 128));	// index of player chunk starting from 0
-		szbuf.WriteString(player->getClient()->GetName());									// name
-		szbuf.WriteLong(int(m_pEdicts[i + 1].v.frags));										// frags
-		szbuf.WriteFloat(m_realTime - player->getConnectionTime());							// playing time
+	//	szbuf.WriteByte((uint8)(count + (int)player->getClient()->IsFakeClient() * 128));	// index of player chunk starting from 0
+	//	szbuf.WriteString(player->getClient()->GetName());									// name
+	//	szbuf.WriteLong(int(m_pEdicts[i + 1].v.frags));										// frags
+	//	szbuf.WriteFloat(m_realTime - player->getConnectionTime());							// playing time
 
-		count++;
-	}
+	//	count++;
+	//}
 
 	*pcount = byte(count);
 }
