@@ -125,21 +125,20 @@ void CServerInfo::writePlayersList(CSizeBuf& szbuf) const
 
 	size_t count = 0;
 
-	// just
-	//for (int i = 0; i < m_maxPlayers; i++)
-	//{
-	//	const CReunionPlayer *player = g_Players[i];
+	// for (int i = 0; i < m_maxPlayers; i++)
+	// {
+	// 	const CReunionPlayer *player = g_Players[i];
 
-	//	if (!player->getClient()->IsConnected())
-	//		continue;
+	// 	if (!player->getClient()->IsConnected())
+	// 		continue;
 
-	//	szbuf.WriteByte((uint8)(count + (int)player->getClient()->IsFakeClient() * 128));	// index of player chunk starting from 0
-	//	szbuf.WriteString(player->getClient()->GetName());									// name
-	//	szbuf.WriteLong(int(m_pEdicts[i + 1].v.frags));										// frags
-	//	szbuf.WriteFloat(m_realTime - player->getConnectionTime());							// playing time
+	// 	szbuf.WriteByte((uint8)(count + (int)player->getClient()->IsFakeClient() * 128));	// index of player chunk starting from 0
+	// 	szbuf.WriteString(player->getClient()->GetName());									// name
+	// 	szbuf.WriteLong(int(m_pEdicts[i + 1].v.frags));										// frags
+	// 	szbuf.WriteFloat(m_realTime - player->getConnectionTime());							// playing time
 
-	//	count++;
-	//}
+	// 	count++;
+	// }
 
 	*pcount = byte(count);
 }
@@ -153,28 +152,28 @@ void CServerInfo::writeRulesList(CSizeBuf& szbuf) const
 
 	size_t count = 0;
 
-	for (cvar_t* var = g_RehldsFuncs->GetCvarVars(); var; var = var->next)
-	{
-		if (var->flags & FCVAR_SERVER)
-		{
-			szbuf.WriteString(var->name);
-			if (var->flags & FCVAR_PROTECTED)
-			{
-				if (var->string[0] && strcmp(var->string, "none") != 0)
-					szbuf.WriteChar('1');
-				else
-					szbuf.WriteChar('0');
-				szbuf.WriteChar('\0');
-			}
-			else
-				szbuf.WriteString(var->string);
+	// for (cvar_t* var = g_RehldsFuncs->GetCvarVars(); var; var = var->next)
+	// {
+	// 	if (var->flags & FCVAR_SERVER)
+	// 	{
+	// 		szbuf.WriteString(var->name);
+	// 		if (var->flags & FCVAR_PROTECTED)
+	// 		{
+	// 			if (var->string[0] && strcmp(var->string, "none") != 0)
+	// 				szbuf.WriteChar('1');
+	// 			else
+	// 				szbuf.WriteChar('0');
+	// 			szbuf.WriteChar('\0');
+	// 		}
+	// 		else
+	// 			szbuf.WriteString(var->string);
 
-			if (szbuf.IsOverflowed())
-				break;
+	// 		if (szbuf.IsOverflowed())
+	// 			break;
 
-			count++;
-		}
-	}
+	// 		count++;
+	// 	}
+	// }
 
 	*pcount = uint16(count);
 }
