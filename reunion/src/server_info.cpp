@@ -125,6 +125,7 @@ void CServerInfo::writePlayersList(CSizeBuf& szbuf) const
 
 	size_t count = 0;
 
+	// just
 	//for (int i = 0; i < m_maxPlayers; i++)
 	//{
 	//	const CReunionPlayer *player = g_Players[i];
